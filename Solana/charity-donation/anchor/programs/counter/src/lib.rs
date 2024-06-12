@@ -5,6 +5,7 @@ use anchor_lang::solana_program::entrypoint::ProgramResult;
 
 declare_id!("8KKg6xgMW6zgNHWXati6ok2TYuPSn82zZvtP3bnZZnwK");
 
+
 #[program]
 pub mod charity {
     use super::*;
