@@ -5,17 +5,17 @@ use anchor_lang::prelude::*;
 declare_id!("8KKg6xgMW6zgNHWXati6ok2TYuPSn82zZvtP3bnZZnwK");
 
 #[program]
-pub mod counter {
+pub mod charity {
     use super::*;
 
-  pub fn close(_ctx: Context<CloseCounter>) -> Result<()> {
-    Ok(())
-  }
+  // pub fn close(_ctx: Context<CloseCounter>) -> Result<()> {
+  //   Ok(())
+  // }
 
-  pub fn decrement(ctx: Context<Update>) -> Result<()> {
-    ctx.accounts.counter.count = ctx.accounts.counter.count.checked_sub(1).unwrap();
-    Ok(())
-  }
+  // pub fn decrement(ctx: Context<Update>) -> Result<()> {
+  //   ctx.accounts.counter.count = ctx.accounts.counter.count.checked_sub(1).unwrap();
+  //   Ok(())
+  // }
 
   pub fn increment(ctx: Context<Update>) -> Result<()> {
     ctx.accounts.counter.count = ctx.accounts.counter.count.checked_add(1).unwrap();
@@ -63,8 +63,18 @@ pub struct Update<'info> {
   pub counter: Account<'info, Counter>,
 }
 
+// #[account]
+// #[derive(InitSpace)]
+// pub struct Counter {
+//   count: u8,
+// }
+
+
 #[account]
 #[derive(InitSpace)]
-pub struct Counter {
-  count: u8,
+pub struct CharityAccount {
+    pub owner: Pubkey,
+    #[max_len(50)]
+    pub charity_name: String,
+    pub deposit_amount: u64, 
 }
